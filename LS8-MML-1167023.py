@@ -1,46 +1,49 @@
-#"Pensamiento computacional seccion 17 laboratorio"
-#26 de septiembre 2023
-#Autor: Mariano Manzo López
-#Objetivos: que el usuario eliga una opcion del menu y se muestre lo seleccionado
-#Entrada: Ingresar el menu: factorial, Secuencia de Finobacci
-#proceso
-#Salida: mostrar en pantalla la secuencia del factorial según el numero ingresado y la secuencia de Fibonacci
+#Introduccion aa la programacion trabajo supervisado
+#6/09/23
+#Mariano Manzo Lopez
+#Objetivo: 
+#Entrada: 
+#Procesos principales: 
+#Salida: Mostrar: 
 
-X=int(input("Ingrese cualquier numero"))
-Y=int(input("Ingrese un numero del menu de opciones"))
+def factorial(numero):
+    resultado = 1
+    for i in range(1, numero + 1):
+        resultado *= i
+    return resultado
 
-#Menu de opciones en ciclo
-opcion=""
-num=0
-contador=1 
-while opcion != "3":
-    print("Menu de opciones")
+def fibonacci(numero):
+    if numero <= 0:
+        return []
+    elif numero == 1:
+        return [0]
+    elif numero == 2:
+        return [0, 1]
+    else:
+        secuencia = [0, 1]
+        while len(secuencia) < numero:
+            siguiente_numero = secuencia[-1] + secuencia[-2]
+            secuencia.append(siguiente_numero)
+        return secuencia
+
+while True:
+    print("Menú:")
     print("1. Factorial")
     print("2. Secuencia de Fibonacci")
-    print("3. Salir del programa")
-    opcion = input("Ingrese la opcion elegida")
-    if opcion =="1":
-        print("Selecciono la FACTORIAL\n")
-        num = int(input("Ingrese el numero: "))
-        print("Vamos a MOSTRAR FACTORIAL de: ", num)
-        while contador <= num:
-            print(contador, "*")
-            contador = contador + 1
+    print("3. Salir")
+
+    opcion = input("Ingrese el número de opción que quiere ejecutar: ")
+
+    if opcion == "1":
+        numero = int(input("Ingrese un número: "))
+        resultado = factorial(numero)
+        print(f"{numero}! = {resultado}")
     elif opcion == "2":
-        print("Seleciono FIBONACCI\n")
-        num = int(input("Ingrese el numero"))
-        print("Vamos a MOSTRAR FIBONACCI de: ", num)
-        contador=0 
-        while contador <= num:
-            print(contador, ",")
-            contador = contador
+        numero = int(input("Ingrese un número: "))
+        secuencia = fibonacci(numero)
+        print(f"Secuencia de Fibonacci({numero}): {', '.join(map(str, secuencia))}")
     elif opcion == "3":
-        print("Hasta pronto\n")
+        print("¡Hasta luego!")
+        break
     else:
-        print("Error... debe ingresar una opcion valida")
-
-
-X=int(input("Ingrese cualquier numero"))
-Y=int(input("Ingrese un numero del menu de opciones"))
-
-
+        print("Opción no válida. Por favor, ingrese una opción válida.")
